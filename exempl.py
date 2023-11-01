@@ -68,7 +68,6 @@ def iniciar_jogo(nome_usuario):
         f"Bem-vindo, {nome_usuario}! Vamos começar o jogo de adivinhação."
     )  # imprime msg de boas vindas
     print("Estou pensando em um número entre 1 e 100. Tente adivinhar.\n")
-    print(numero_secreto)
     inicio_jogo = datetime.now().strftime('%Y-%m-%d %H:%M:%S') #obtida a data e hora atuais
     while True:
         tentativa = int(input("Digite um número: "))
