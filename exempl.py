@@ -120,6 +120,8 @@ def iniciar_jogo(nome_usuario):
     if replay == 's' or replay == 'S':
         os.system('cls')
         nome_usuario = input("Digite seu nome: ")
+        if nome_usuario == '':
+            nome_usuario = 'Jogador'
         iniciar_jogo(nome_usuario)
     elif replay == 'n' or replay == 'N':
         os.system('cls')  
@@ -129,5 +131,7 @@ def iniciar_jogo(nome_usuario):
 if __name__ == "__main__":
     os.system('cls') #Adicionado em: 01/11/23 - wendtxf
     nome_usuario = input("Digite seu nome: ")
+    if nome_usuario == '':
+        nome_usuario = 'Jogador'
     criar_tabela_partidas()
     iniciar_jogo(nome_usuario)
