@@ -11,7 +11,7 @@ from datetime import datetime
 # os para realizar a execução de comandos do S.O.
 # datetime para trabalhar com datas e horas.
 
-# Nota: O comando "os.system('cls')" está setado para a execução em Windows, caso o programa seja executado em Linux ou MAC deverá ser utilizado da seguinte forma:   "os.system('clear')"
+# Nota: O comando "os.system('cls')" está setado para a execução em Windows, caso o programa seja executado em Linux ou MAC deverá ser utilizado da seguinte forma:   "os.system('clear') - wendtxf"
 
 def criar_tabela_partidas():  # função criar_tabela_partidas responsável por criar uma tabela chamada "partidas" no banco de dados SQLite 'exemplo.db', se ela ainda não existir.
     conn = sqlite3.connect(
@@ -68,26 +68,22 @@ def iniciar_jogo(nome_usuario):
         f"Bem-vindo, {nome_usuario}! Vamos começar o jogo de adivinhação."
     )  # imprime msg de boas vindas
     print("Estou pensando em um número entre 1 e 100. Tente adivinhar.\n")
-
+    print(numero_secreto)
     inicio_jogo = datetime.now().strftime('%Y-%m-%d %H:%M:%S') #obtida a data e hora atuais
     while True:
         tentativa = int(input("Digite um número: "))
         tentativas += 1 #loop que dxa que o jogador fzer varias tentativas p adivinhar o numero secreto a cada tentativa, o jogador é solicitado a digitar um número e o contador de tentativas é incrementado.
-
         if tentativa < numero_secreto:
             print("Tente um número maior.\n")
         elif tentativa > numero_secreto:
             print("Tente um número menor.\n")
         else:
             os.system('cls') #Adicionado em: 01/11/23 - wendtxf
-            print(
-                f"Parabéns! Você acertou em {tentativas} tentativas.\n"
-            )  # dependendo da tentativa do jogador, fornece uma dica se o número a ser adivinhado é maior ou menor. ai se o jogador adivinhar, ele passa para a parte do código onde é parabenizado e o jogo é encerrado.
-
-            fim_jogo = datetime.now().strftime(
-                "%Y-%m-%d %H:%M:%S"
-            )  # qnd o jogador adivinha, a data e hora atual são registradas como o fim do jogo.
-
+            if tentativas < 2: #Adicionado em: 01/11/23 - wendtxf
+                print(f"Parabéns! Você acertou em {tentativas} tentativa.\n")# dependendo da tentativa do jogador, fornece uma dica se o número a ser adivinhado é maior ou menor. ai se o jogador adivinhar, ele passa para a parte do código onde é parabenizado e o jogo é encerrado.
+            if tentativas > 2: #Adicionado em: 01/11/23 - wendtxf
+                print(f"Parabéns! Você acertou em {tentativas} tentativas.\n")
+            fim_jogo = datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # qnd o jogador adivinha, a data e hora atual são registradas como o fim do jogo.
             conn = sqlite3.connect(
                 "exemplo.db"
             )  # dps a função se conecta ao banco de dados e insere os detalhes da partida (nome do usuário, número de tentativas, início e fim do jogo) na tabela 'partidas'.
@@ -131,7 +127,7 @@ def iniciar_jogo(nome_usuario):
 if __name__ == "__main__":
     os.system('cls') #Adicionado em: 01/11/23 - wendtxf
     nome_usuario = input("Digite seu nome: ")
-    if nome_usuario == '':
-        nome_usuario = 'Jogador'
+    if nome_usuario == '':#Adicionado em: 01/11/23 - wendtxf
+        nome_usuario = 'Jogador'#Adicionado em: 01/11/23 - wendtxf
     criar_tabela_partidas()
     iniciar_jogo(nome_usuario)
